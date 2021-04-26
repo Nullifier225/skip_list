@@ -289,7 +289,6 @@ class skiplist:
         return toret
     
 
-def main(l):
-    s = skiplist()
-    s.construct(l)
-    s.delete(40)
+# s = skiplist()
+# s.construct([5,8,12,15,25,17,35,40,42,48])
+# s.delete(40)
