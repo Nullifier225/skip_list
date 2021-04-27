@@ -169,7 +169,7 @@ class skiplist:
         ctr = 0    
         while(ctr<len(l)):
             l[ctr].box.color = color.green
-            if(l[ctr].next):
+            if(l[ctr].next and l[ctr].nextarr):
                 l[ctr].nextarr.axis = l[ctr].next.box.pos - l[ctr].box.pos
             ctr+=1
         ################################################END OF INSERTION ##########################################

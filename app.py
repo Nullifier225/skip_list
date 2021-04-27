@@ -9,6 +9,7 @@ s = skiplist.skiplist()
 def welcome():
     return render_template('landing.html')
 
+
 @app.route('/constructform')
 def construct_page():
     return render_template('constructform.html')
