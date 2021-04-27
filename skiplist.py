@@ -25,16 +25,16 @@ class skiplist:
         tempHead = self.head
 
         elements.sort()
-        
+
         #CREATING THE ZEROTH LEVEL OF NODES
-        for ele in elements:                       
+        for ele in elements:
             rate(4)
             n = self.node() 
             n.box = box(pos=tempHead.box.pos + vector(3,0,0),size=vector(1,1,1),color = color.green)
             n.data = ele
             n.label = label(pos = n.box.pos, text = str(n.data))
             tempHead.next = n  
-            tempHead.nextarr = arrow(pos = tempHead.box.pos, axis = n.box.pos - tempHead.box.pos, color = color.white)
+            tempHead.nextarr = arrow(pos = tempHead.box.pos, axis = n.box.pos - tempHead.box.pos, color = color.white, shaftwidth=0.1, headwidth =0.2)
             tempHead = tempHead.next
     
         #CREATING SUBSEQUENT LAYERS
@@ -219,18 +219,29 @@ class skiplist:
         for i in range(len(l)):
             top = l[len(l)-i-1]
 
-            while(top.next!=None):
+            while(top!=None):
                 rate(2)
                 top.box.color = color.red
-                if(top.next.data==value):
+                if(top.next == None):
+                    l[len(l)-i-1] = None
+                    rate(2)
+                    top.box.color = color.green
+                    break
+                elif(top.next.data==value):
                     l[len(l)-i-1] = top
                     break
                 elif(top.next.data > value):
                     l[len(l)-i-1] = top
                     break
+
+                rate(2)
                 top.box.color = color.green
                 top = top.next
-                
+
+        for i in range(len(l)):
+            top = l[len(l)-i-1]
+            if(top == None):
+                continue
             if(top.next!=None and top.next.data==value):
                 temp = top.next
                 top.next=top.next.next
@@ -260,16 +271,14 @@ class skiplist:
                 if(start.nextarr):
                     start.nextarr.pos -= vector(3,0,0)
                 start = start.next
-                
+
             if(top.next):
                 top.nextarr.axis = top.next.box.pos - top.box.pos
             else:
                 if(top.nextarr):
                     top.nextarr.visible = False
-            rate(2)    
             top.box.color = color.green
-                    
-                
+
 
     # def printSL(self):
     #     n = self.head
@@ -287,8 +296,10 @@ class skiplist:
             toret+=1
             head = head.next
         return toret
-    
 
-# s = skiplist()
-# s.construct([5,8,12,15,25,17,35,40,42,48])
-# s.delete(40)
+
+s = skiplist()
+s.construct([5,8,12,15,25,17,35,40,42,48])
+s.delete(40)
+s.search(25)
+s.insert(30)
