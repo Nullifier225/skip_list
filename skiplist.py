@@ -150,7 +150,7 @@ class skiplist:
             n = self.node()
             n.box = box(pos = l[ctr-1].next.box.pos+ vector(0,3,0), color = color.green, size=vector(1,1,1))
             n.downarr = arrow(pos = n.box.pos, axis = l[ctr-1].next.box.pos - n.box.pos, color = color.white, shaftwidth = 0.1) 
-            l[ctr-1].next.uparr = arrow(pos = l[ctr-1].box.pos, axis = n.box.pos - l[ctr-1].next.box.pos,color = color.white,shaftwidth = 0.1, headwidth =0.2)
+            l[ctr-1].next.uparr = arrow(pos = l[ctr-1].next.box.pos, axis = n.box.pos - l[ctr-1].next.box.pos,color = color.white,shaftwidth = 0.1, headwidth =0.2)
             n.data = value
             if(l[ctr].next!=None and l[ctr].next.data!=value):
                 temp = l[ctr].next
