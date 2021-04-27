@@ -18,12 +18,12 @@ def construction():
     elements = request.form.get("elements", type=str)
     l = list(map(int,elements.split(' ')))
     s.construct(l)
-    return render_template('display.html')
+    return render_template('menu.html')
     
 
-@app.route('/display')
-def display_page():
-    return render_template('display.html')
+# @app.route('/display')
+# def display_page():
+#     return render_template('display.html')
 
 @app.route('/menu')
 def menu_page():
@@ -37,7 +37,7 @@ def insert_page():
 def insertion():
     element = request.form.get("insert_element", type=int)
     s.insert(element)
-    return render_template('display.html')
+    return render_template('menu.html')
 
 @app.route('/delete')
 def delete_page():
@@ -47,7 +47,7 @@ def delete_page():
 def deletion():
     element = request.form.get("delete_element", type=int)
     s.delete(element)
-    return render_template('display.html')
+    return render_template('menu.html')
 
 @app.route('/search')
 def search_page():
@@ -57,7 +57,7 @@ def search_page():
 def search():
     element = request.form.get("search_element", type=int)
     s.search(element)
-    return render_template('display.html')
+    return render_template('menu.html')
 
 @app.route('/viewadt')
 def viewadt():
