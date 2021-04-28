@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask.helpers import url_for
 import skiplist
 
@@ -9,6 +9,10 @@ s = skiplist.skiplist()
 def welcome():
     return render_template('landing.html')
 
+@app.route('/reset')
+def reset():
+    s.clear()
+    return render_template("landing.html")
 
 @app.route('/constructform')
 def construct_page():
