@@ -74,6 +74,7 @@ class skiplist:
             if(self.length(tempHead)==0):
                 tempHead.down.uparr.visible = False
                 del tempHead.down.uparr
+                tempHead.downarr.visible = False
                 tempHead.label.visible = False
                 tempHead.box.visible = False
                 del tempHead   
@@ -169,8 +170,8 @@ class skiplist:
         ctr = 0    
         while(ctr<len(l)):
             l[ctr].box.color = color.green
-            if(l[ctr].next and l[ctr].nextarr):
-                l[ctr].nextarr.axis = l[ctr].next.box.pos - l[ctr].box.pos
+            if(l[ctr].next):
+                l[ctr].nextarr = arrow(pos = l[ctr].box.pos, axis = l[ctr].next.box.pos - l[ctr].box.pos, color = color.white, shaftwidth=0.1, headwidth = 0.2)
             ctr+=1
         ################################################END OF INSERTION ##########################################
             
