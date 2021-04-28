@@ -77,6 +77,7 @@ class skiplist:
                 tempHead.downarr.visible = False
                 tempHead.label.visible = False
                 tempHead.box.visible = False
+                tempHead.down.up = None
                 del tempHead   
                 break
             ctr+=1
@@ -280,16 +281,54 @@ class skiplist:
                     top.nextarr.visible = False
             top.box.color = color.green
 
+    def clear(self):
+        thead = self.head
 
-    # def printSL(self):
-    #     n = self.head
-    #     while(n!=None):
-    #         ntemp = n
-    #         while(ntemp.next!=None):
-    #             ntemp = ntemp.next
-    #             print(ntemp.data,end = " ")
-    #         n = n.up
-    #         print()
+        while(thead != None):
+            curlevhead = thead.next
+            while(curlevhead):
+                curlevhead.box.visible = False
+                if(curlevhead.label):
+                    curlevhead.label.visible = False
+                if(curlevhead.nextarr):
+                    curlevhead.nextarr.visible = False
+                if(curlevhead.uparr):
+                    curlevhead.uparr.visible = False
+                if(curlevhead.downarr):
+                    curlevhead.downarr.visible = False
+
+                temp = curlevhead
+                curlevhead = temp.next
+                del temp
+            thead.next = None
+            if(thead.label):
+                thead.label.visible = False
+            if(thead.nextarr):
+                thead.nextarr.visible = False
+            if(thead.uparr):
+                thead.uparr.visible = False
+            if(thead.downarr):
+                thead.downarr.visible = False
+            thead = thead.up
+
+        thead = self.head.up
+        while(thead):
+            thead.label.visible = False
+            thead.box.visible = False
+            temp = thead
+            thead = temp.up
+            del temp
+        self.head.up = None
+        
+    def printSL(self):
+        n = self.head
+        while(n!=None):
+            ntemp = n
+            while(ntemp.next!=None):
+                ntemp = ntemp.next
+                print(ntemp.data,end = " ")
+            n = n.up
+            print()
 
     def length(self,head):
         toret =0
@@ -299,8 +338,8 @@ class skiplist:
         return toret
 
 
-# s = skiplist()
-# s.construct([5,8,12,15,25,17,35,40,42,48])
-# s.delete(40)
-# s.search(25)
-# s.insert(30)
+s = skiplist()
+s.construct([5,8,12,15,25,17,35,40,42,48])
+s.clear()
+s.construct([5,8,12,15,25,17,35,40,42,48])
+#s.printSL()
